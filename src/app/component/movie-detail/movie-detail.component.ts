@@ -12,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class MovieDetailComponent implements OnInit {
   movie: Movie;
-  showAllTimes = false;
+
   modalRef: BsModalRef;
 
   constructor(
@@ -28,18 +28,10 @@ export class MovieDetailComponent implements OnInit {
 
   getMovie(): void {
     this.route.params.subscribe(params => {
-      this.db.getMovie(params.id).subscribe(movie => this.movie = movie);
+      this.db.getMovie(params.id).subscribe(movie => {this.movie = movie;
+        console.log(movie);
+      });
     });
-  }
-
-  // show all showtimes
-  showAllShowtimes(): void {
-    this.showAllTimes = true;
-  }
-
-  // hide all showtimes
-  hideAllShowtimes(): void {
-    this.showAllTimes = false;
   }
 
 

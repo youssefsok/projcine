@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'day'
@@ -7,6 +7,7 @@ export class DayPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     const date = new Date(value);
+
     const today = new Date();
     const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -26,7 +27,6 @@ export class DayPipe implements PipeTransform {
         prefix = '';
       }
     }
-
     return prefix + ' ' + weekday[date.getDay()] + ' ' + date.getDate() + ' ' + months[date.getMonth()];
   }
 

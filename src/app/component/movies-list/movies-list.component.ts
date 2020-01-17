@@ -11,7 +11,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class MoviesListComponent implements OnInit, OnChanges {
   movies: Movie[];
-  showAllTimes: boolean[] = [];
   @Input() filterDate: string;
   modalRef: BsModalRef;
   previewUrl = '';
@@ -33,15 +32,7 @@ export class MoviesListComponent implements OnInit, OnChanges {
     this.db.getNowPlayingMovies(this.filterDate).subscribe(movies => this.movies = movies);
   }
 
-  // show all showtimes
-  showAllShowtimes(movieId: number): void {
-    this.showAllTimes[movieId] = true;
-  }
 
-  // hide all showtimes
-  hideAllShowtimes(movieId: number): void {
-    this.showAllTimes[movieId] = false;
-  }
 
   openModal(template: TemplateRef<any>, previewUrl: string) {
     this.previewUrl = previewUrl;

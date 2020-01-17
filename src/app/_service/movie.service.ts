@@ -63,51 +63,41 @@ export class MovieService {
   }
 
   // Get movie showtimes
-  getMovieShowtimes(movie: Movie | number, filterDate: string, showAllTimes: boolean = false): Observable<ShowtimeDate[]> {
-    let movieId = null;
-
-    if (typeof movie === 'object') {
-      movieId = movie.id;
-    }
-    if (typeof movie === 'number') {
-      movieId = movie;
-    }
+  getMovieShowtimes(movie: Movie, filterDate: string): Observable<Showtime[]> {
 
     //
-    const date = showAllTimes || filterDate === 'all' ? new Date() : new Date(filterDate);
-    const next6days = new Date();
-    date.setHours(0, 0, 0, 0);
-    next6days.setHours(0, 0, 0, 0);
-    next6days.setDate(next6days.getDate() + 6);
-
-    return this.http.get<Showtime[]>(this.showtimesUrl)
-      .pipe(
-        map(showtimes => showtimes.filter(showtime => {
-          let flag = 0;
-
-          showtime.showtimes = showtime.showtimes.filter(showtimesDate => {
-            const showtimeDate = new Date(showtimesDate.date);
-            return showAllTimes || filterDate === 'all' && !flag++ ? showtimeDate >= date && showtimeDate <= next6days : showtimeDate.getTime() === date.getTime();
-          });
-
-          return showtime.movieId === movieId;
-        })),
-        map(showtimes => showtimes.length ? showtimes[0].showtimes : []),
-        catchError(this.handleError('getNowPlayingMovies', []))
-      );
+    // const date = showAllTimes || filterDate === 'all' ? new Date() : new Date(filterDate);
+    // const next6days = new Date();
+    // date.setHours(0, 0, 0, 0);
+    // next6days.setHours(0, 0, 0, 0);
+    // next6days.setDate(next6days.getDate() + 6);
+    let url = Config.apiUrl + '/' + this.moviesUrl + '/' + movie.id + '/shows';
+    console.log(url);
+    return this.http.get<Showtime[]>(url);
+    // .pipe(
+    //   map(showtimes => showtimes.filter(showtime => {
+    //     let flag = 0;
+    //
+    //     showtime.showtimes = showtime.showtimes.filter(showtimesDate => {
+    //       const showtimeDate = new Date(showtimesDate.date);
+    //       return showAllTimes || filterDate === 'all' && !flag++ ? showtimeDate >= date && showtimeDate <= next6days : showtimeDate.getTime() === date.getTime();
+    //     });
+    //
+    //     return showtime.movieId === movie.id;
+    //   })),
+    //   map(showtimes => showtimes.length ? showtimes[0].showtimes : []),
+    //   catchError(this.handleError('getNowPlayingMovies', []))
+    // );
   }
 
   // get single movie
   getMovie(id: number): Observable<Movie> {
-    const url = `${this.moviesUrl}/${id}`;
-    return this.http.get<Movie>(url).pipe(
-      catchError(this.handleError<Movie>(`getMovie id = {id}`))
-    );
+    const url = `${Config.apiUrl + '/' + this.moviesUrl}/${id}`;
+    return this.http.get<Movie>(url);
   }
 
   // search movies
   searchMovies(term: string): Observable<Movie[]> {
-
     return this.http.get<Movie[]>(`${Config.apiUrl + '/' + this.moviesUrl}/?filter[where][title][like]=${term}`);
   }
 }

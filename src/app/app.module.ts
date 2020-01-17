@@ -15,7 +15,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {MoviesListComponent} from './component/movies-list/movies-list.component';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {SafePipe} from './pipe/safe.pipe';
 import {MovieSearchComponent} from './component/movie-search/movie-search.component';
 import {MoviesGridComponent} from './component/movies-grid/movies-grid.component';
 import {MoviesSliderComponent} from './component/movies-slider/movies-slider.component';
@@ -36,7 +35,6 @@ import {FormsModule} from '@angular/forms';
     MinutePipe,
     DayPipe,
     MoviesListComponent,
-    SafePipe,
     MovieSearchComponent,
     MoviesGridComponent,
     MoviesSliderComponent,
