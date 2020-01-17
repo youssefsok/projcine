@@ -29,4 +29,7 @@ export class ShowtimesComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.getShowtimes();
   }
+
+
+
 }

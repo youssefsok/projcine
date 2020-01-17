@@ -12,6 +12,13 @@
           <li class="nav-item">
             <a routerLink="/movies" class="nav-link">Movies</a>
           </li>
+
+          <li class="nav-item">
+            <a routerLink="/movie/add" *ngIf=" isAdmin " class="nav-link">Add Movie</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/showtime/add" *ngIf=" isAdmin "class="nav-link">Add Showtime</a>
+          </li>
           <li class="nav-item">
             <a routerLink="/auth" *ngIf="!isLogged" class="nav-link">Login/Register</a>
           </li>

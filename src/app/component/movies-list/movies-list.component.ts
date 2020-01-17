@@ -34,7 +34,8 @@ export class MoviesListComponent implements OnInit, OnChanges {
 
 
 
-  openModal(template: TemplateRef<any>, previewUrl: string) {
+  openModal(template: TemplateRef<any>, previewUrl: string)
+  {
     this.previewUrl = previewUrl;
     this.modalRef = this.modalService.show(template);
     this.modalRef.setClass('modal-lg');

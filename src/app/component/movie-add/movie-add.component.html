@@ -1,0 +1,62 @@
+
+
+
+
+<h2 ALIGN="CENTER">Add Movie form</h2>
+
+<form class="register-form" #addForm="ngForm" (ngSubmit)="add(addForm)">
+  <table border="0" align="center">
+    <tbody>
+
+    <tr>
+      <td><label for="title">Title: </label></td>
+      <td><input id="title" maxlength="50" required ngModel name="title" type="text" placeholder="title" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="poster">Poster: </label></td>
+      <td><input id="poster" maxlength="50" required ngModel name="poster" type="text" placeholder="poster" /></td>
+    </tr>
+    <tr>
+      <td><label for="backdrop">BackDrop: </label></td>
+      <td><input id="backdrop" maxlength="50" required ngModel name="backdrop" type="text" placeholder="backdrop" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="trailer">Trailer: </label></td>
+      <td><input id="trailer" maxlength="50" required ngModel name="trailer" type="text" placeholder="trailer" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="overview">Overview: </label></td>
+      <td><input id="overview" maxlength="50" required ngModel name="overview" type="textarea" placeholder="overview" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="director">Director:</label></td>
+      <td><input id="director" maxlength="50" required ngModel name="director" type="text" placeholder="director" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="casting">Cast:</label></td>
+      <td><input id="casting" maxlength="50" required ngModel name="casting" type="text" placeholder="casting" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="release_date">Release Date:</label></td>
+      <td><input id="release_date" maxlength="50" required ngModel name="release_date" type="date" placeholder="release_date" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="runtime">Runtime:</label></td>
+      <td><input id="runtime" maxlength="50" required ngModel name="runtime" type="number" placeholder="runtime" /></td>
+    </tr>
+
+    <tr>
+      <button [disabled]="!addForm.valid">Submit</button>
+       </tr>
+
+    </tbody>
+  </table>
+</form>
+

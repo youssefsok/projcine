@@ -23,6 +23,8 @@ import {AuthenticationComponent} from './component/authentication/authentication
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
 import {ErrorInterceptor} from './_helpers/error.interceptor';
 import {FormsModule} from '@angular/forms';
+import {MovieAddComponent} from './component/movie-add/movie-add.component';
+import { ShowtimesAddComponent } from './component/showtimes-add/showtimes-add.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {FormsModule} from '@angular/forms';
     MovieSearchComponent,
     MoviesGridComponent,
     MoviesSliderComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    MovieAddComponent,
+    ShowtimesAddComponent
   ],
   imports: [
     BrowserModule,

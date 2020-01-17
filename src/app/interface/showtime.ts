@@ -1,6 +1,6 @@
 import {ShowtimeDate} from './showtime-date';
 
-export interface Showtime {
+export class Showtime {
   movieId: string;
   showtimes: ShowtimeDate[];
   time: string;

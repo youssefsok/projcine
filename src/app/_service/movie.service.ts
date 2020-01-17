@@ -6,6 +6,7 @@ import {Movie} from './../interface/movie';
 import {Showtime} from './../interface/showtime';
 import {HttpClient} from '@angular/common/http';
 import {Config} from '../../Config';
+import {MovieModel} from '../_models/movieModel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,11 @@ import {Config} from '../../Config';
 export class MovieService {
   private moviesUrl = 'api/movies';
   private showtimesUrl = 'api/showtimes';
+
+  movie: Movie;
+  movieModel: MovieModel;
+  newCasting: string[];
+
 
   constructor(private http: HttpClient) {
   }
@@ -99,5 +105,31 @@ export class MovieService {
   // search movies
   searchMovies(term: string): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${Config.apiUrl + '/' + this.moviesUrl}/?filter[where][title][like]=${term}`);
+  }
+
+  addMovie(movieModel: MovieModel): Observable<MovieModel> {
+    return this.http.post<MovieModel>(Config.apiUrl + '/' + this.moviesUrl, movieModel);
+
+  }
+
+
+  createMovie(
+              title: string,
+              poster: string,
+              backdrop: string,
+              trailer: string,
+              overview: string,
+              director: string,
+              casting: string,
+              release_date: string,
+              runtime: number): Observable<MovieModel> {
+    console.log(casting);
+    this.newCasting = casting.split('/');
+    console.log(this.newCasting);
+    this.movieModel = new MovieModel();
+
+    this.movieModel = new MovieModel( title, poster, trailer, backdrop, overview, director, this.newCasting, release_date, runtime);
+
+    return (this.addMovie(this.movieModel));
   }
 }
