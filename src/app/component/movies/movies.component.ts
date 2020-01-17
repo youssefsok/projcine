@@ -18,7 +18,7 @@ export class MoviesComponent implements OnInit {
 
   // get filters value, text to display
   getFilters() {
-    const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const date = new Date();
     this.filters = [];
     this.selectedDate = this.dateToString(date);
@@ -27,8 +27,6 @@ export class MoviesComponent implements OnInit {
       this.filters.push({ date: this.dateToString(date), day:  i === 0 ? 'Today' : weekday[date.getDay()] });
       date.setDate(date.getDate() + 1);
     }
-
-    this.filters.push({ date: 'all', day: 'All Times' });
   }
 
   // change filter

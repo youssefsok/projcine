@@ -3,6 +3,7 @@ import { Movie } from './../../interface/movie';
 import { Component, OnInit, Input, SimpleChanges, OnChanges, TemplateRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {log} from 'util';
 
 @Component({
   selector: 'app-movies-list',
@@ -10,37 +11,39 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./movies-list.component.sass']
 })
 export class MoviesListComponent implements OnInit, OnChanges {
-  movies: Movie[];
+  movies: Movie[] = [];
+  shows: any;
   showAllTimes: boolean[] = [];
   @Input() filterDate: string;
   modalRef: BsModalRef;
   previewUrl = '';
 
-  constructor(private db: MovieService, private modalService: BsModalService, private sanitizer: DomSanitizer) { }
+  constructor(private movieService: MovieService, private modalService: BsModalService, private sanitizer: DomSanitizer) { }
 
-  ngOnInit() {
-    this.getMovies();
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['filterDate']) {
       this.getMovies();
+      this.movies = this.movies.filter((el, i, a) => i === a.indexOf(el));
     }
   }
 
   // get playing movie based on filter date
   getMovies(): void {
-    this.db.getNowPlayingMovies(this.filterDate).subscribe(movies => this.movies = movies);
-  }
+    this.movieService.getNowPlayingShows(this.filterDate).subscribe(shows => {
+      shows.forEach( show => {
+          this.movieService.getMovie(show.movieId).subscribe(movie => {
+          this.movies.push(movie);
+        });
 
-  // show all showtimes
-  showAllShowtimes(movieId: number): void {
-    this.showAllTimes[movieId] = true;
-  }
+      }
+      );
+      // this.movies = this.movies.filter((el, i, a) => i === a.indexOf(el));
 
-  // hide all showtimes
-  hideAllShowtimes(movieId: number): void {
-    this.showAllTimes[movieId] = false;
+    } );
+
+
   }
 
   openModal(template: TemplateRef<any>, previewUrl: string) {

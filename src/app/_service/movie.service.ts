@@ -12,7 +12,7 @@ import {Config} from '../../Config';
 })
 export class MovieService {
   private moviesUrl = 'api/movies';
-  private showtimesUrl = 'api/showtimes';
+  private showtimesUrl = 'api/shows';
 
   constructor(private http: HttpClient) {
   }
@@ -31,35 +31,12 @@ export class MovieService {
   }
 
   // Get now playing moving
-  getNowPlayingMovies(filterDate: string = 'all'): Observable<Movie[]> {
+  getNowPlayingShows(filterDate: string): Observable<Movie[]> {
     let today = null;
-    let next6days = null;
-
-    if (filterDate === 'all') {
-      today = new Date();
-      next6days = new Date();
-      today.setHours(0, 0, 0, 0);
-      next6days.setHours(0, 0, 0, 0);
-      next6days.setDate(next6days.getDate() + 6);
-    } else {
-      today = new Date(filterDate);
-    }
-
-    return this.http.get<Showtime[]>(this.showtimesUrl)
-      .pipe(
-        map(showtimes => showtimes.filter(showtime =>
-          showtime.showtimes.filter(showtimesDate => {
-            const showtimeDate = new Date(showtimesDate.date);
-
-            return filterDate === 'all' ? showtimeDate >= today && showtimeDate <= next6days : showtimeDate.getDate() === today.getDate();
-          }).length > 0
-        )),
-        concatMap(showtimes => this.http.get<Movie[]>(this.moviesUrl)
-          .pipe(
-            map(movies => movies.filter(movie => showtimes.filter(showtime => movie.id === showtime.movieId).length > 0))
-          )),
-        catchError(this.handleError('getNowPlayingMovies', []))
-      );
+    today = new Date(filterDate);
+    const term = today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear();
+    console.log(term);
+    return this.http.get<Showtime[]>(`${Config.apiUrl + '/' + this.showtimesUrl}/?filter[where][date][like]=${term}`);
   }
 
   // Get movie showtimes
@@ -98,11 +75,9 @@ export class MovieService {
   }
 
   // get single movie
-  getMovie(id: number): Observable<Movie> {
-    const url = `${this.moviesUrl}/${id}`;
-    return this.http.get<Movie>(url).pipe(
-      catchError(this.handleError<Movie>(`getMovie id = {id}`))
-    );
+  getMovie(id: string): Observable<Movie> {
+
+    return this.http.get<Movie[]>(`${Config.apiUrl + '/' + this.moviesUrl}/${id}`);
   }
 
   // search movies
