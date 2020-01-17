@@ -1,12 +1,12 @@
 <div class="showtimes">
-  <div class="showtime" *ngFor="let showtime of showtimes">
-    <div class="showtime-date">{{showtime.date | day}}</div>
-    <div class="showtime-section">
+  <div class="showtime" >
+    <div class="showtime-date"></div>
+    <div class="showtime-section" >
       <ul>
-        <li class="showtime-section-detail" *ngFor="let time of showtime.times">
+        <li class="showtime-section-detail" *ngFor="let showtime of showtimes">
           <a href="javascript:void(0);">
-            <time>{{time.time || time}}</time>
-            <span>{{time.type ? time.type : '2D'}}</span>
+            <time>{{showtime.date | day }}</time>
+            <span>{{showtime.time }}</span>
           </a>
         </li>
       </ul>

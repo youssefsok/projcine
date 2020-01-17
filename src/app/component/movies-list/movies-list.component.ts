@@ -11,6 +11,7 @@ import {log} from 'util';
   styleUrls: ['./movies-list.component.sass']
 })
 export class MoviesListComponent implements OnInit, OnChanges {
+  movies: Movie[];
   movies: Movie[] = [];
   shows: any;
   showAllTimes: boolean[] = [];
@@ -41,12 +42,10 @@ export class MoviesListComponent implements OnInit, OnChanges {
       );
       // this.movies = this.movies.filter((el, i, a) => i === a.indexOf(el));
 
-    } );
 
 
-  }
-
-  openModal(template: TemplateRef<any>, previewUrl: string) {
+  openModal(template: TemplateRef<any>, previewUrl: string)
+  {
     this.previewUrl = previewUrl;
     this.modalRef = this.modalService.show(template);
     this.modalRef.setClass('modal-lg');

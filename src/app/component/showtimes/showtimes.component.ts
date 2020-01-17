@@ -1,32 +1,35 @@
-import { Component, OnInit, Input, SimpleChange, SimpleChanges, OnChanges } from '@angular/core';
-import { Movie } from '../../interface/movie';
-import { MovieService } from '../../_service/movie.service';
-import { ShowtimeDate } from 'src/app/interface/showtime-date';
+import {Component, OnInit, Input, SimpleChange, SimpleChanges, OnChanges} from '@angular/core';
+import {Movie} from '../../interface/movie';
+import {MovieService} from '../../_service/movie.service';
+import {ShowtimeDate} from 'src/app/interface/showtime-date';
+import {Showtime} from '../../interface/showtime';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-showtimes',
   templateUrl: './showtimes.component.html',
   styleUrls: ['./showtimes.component.sass']
 })
-export class ShowtimesComponent implements OnInit, OnChanges {
+export class ShowtimesComponent implements OnChanges {
   @Input() movie: Movie;
-  @Input() showAllTimes: boolean;
   @Input() filterDate: string;
-  showtimes: ShowtimeDate[];
+  showtimes: Showtime[];
 
-  constructor(private db: MovieService) { }
+  constructor(private movieService: MovieService, private router: Router) {
+  }
 
-  ngOnInit() {
+
+  getShowtimes(): void {
+    this.movieService.getMovieShowtimes(this.movie, this.filterDate).subscribe(showtimes => {
+      this.showtimes = showtimes;
+      console.log('showssss', showtimes);
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.getShowtimes();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['showAllTimes']) {
-      this.getShowtimes();
-    }
-  }
 
-  getShowtimes(): void {
-    this.db.getMovieShowtimes(this.movie, this.filterDate, this.showAllTimes).subscribe(showtimes => this.showtimes = showtimes);
-  }
+
 }

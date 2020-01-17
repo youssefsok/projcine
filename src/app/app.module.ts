@@ -15,7 +15,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {MoviesListComponent} from './component/movies-list/movies-list.component';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {SafePipe} from './pipe/safe.pipe';
 import {MovieSearchComponent} from './component/movie-search/movie-search.component';
 import {MoviesGridComponent} from './component/movies-grid/movies-grid.component';
 import {MoviesSliderComponent} from './component/movies-slider/movies-slider.component';
@@ -24,6 +23,8 @@ import {AuthenticationComponent} from './component/authentication/authentication
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
 import {ErrorInterceptor} from './_helpers/error.interceptor';
 import {FormsModule} from '@angular/forms';
+import {MovieAddComponent} from './component/movie-add/movie-add.component';
+import { ShowtimesAddComponent } from './component/showtimes-add/showtimes-add.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +37,12 @@ import {FormsModule} from '@angular/forms';
     MinutePipe,
     DayPipe,
     MoviesListComponent,
-    SafePipe,
     MovieSearchComponent,
     MoviesGridComponent,
     MoviesSliderComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    MovieAddComponent,
+    ShowtimesAddComponent
   ],
   imports: [
     BrowserModule,

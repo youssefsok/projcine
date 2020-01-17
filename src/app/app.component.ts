@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   title = 'Angular-Cinema';
   currentUser: Observable<User> = null;
   isLogged: boolean = false;
+  isAdmin: boolean = false;
 
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
@@ -20,6 +21,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticationService.currentUser.subscribe(x => this.isLogged = (x !== null));
+    this.authenticationService.isAdmin.subscribe(x => this.isAdmin = x);
+
   }
 
   logout() {

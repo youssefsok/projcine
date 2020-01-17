@@ -29,23 +29,10 @@
 
           <app-showtimes
             [movie]="movie"
-            [showAllTimes]="showAllTimes"
             [filterDate]="'all'"
           ></app-showtimes>
 
-          <a
-            href="javascript:void(0)"
-            class="movie-more-showtime"
-            (click)="showAllShowtimes()"
-            *ngIf="!showAllTimes"
-            >Show All Showtimes</a>
 
-          <a
-            href="javascript:void(0)"
-            class="movie-today-showtime"
-            (click)="hideAllShowtimes()"
-            *ngIf="showAllTimes"
-            >Hide All Showtimes</a>
         </div>
       </div>
     </div>
