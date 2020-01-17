@@ -11,10 +11,7 @@ import {log} from 'util';
   styleUrls: ['./movies-list.component.sass']
 })
 export class MoviesListComponent implements OnInit, OnChanges {
-  movies: Movie[];
   movies: Movie[] = [];
-  shows: any;
-  showAllTimes: boolean[] = [];
   @Input() filterDate: string;
   modalRef: BsModalRef;
   previewUrl = '';
@@ -26,12 +23,12 @@ export class MoviesListComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['filterDate']) {
       this.getMovies();
-      this.movies = this.movies.filter((el, i, a) => i === a.indexOf(el));
     }
   }
 
   // get playing movie based on filter date
   getMovies(): void {
+    this.movies = [];
     this.movieService.getNowPlayingShows(this.filterDate).subscribe(shows => {
       shows.forEach( show => {
           this.movieService.getMovie(show.movieId).subscribe(movie => {
@@ -41,11 +38,9 @@ export class MoviesListComponent implements OnInit, OnChanges {
       }
       );
       // this.movies = this.movies.filter((el, i, a) => i === a.indexOf(el));
-
-
-
-  openModal(template: TemplateRef<any>, previewUrl: string)
-  {
+    });
+  }
+  openModal(template: TemplateRef<any>, previewUrl: string) {
     this.previewUrl = previewUrl;
     this.modalRef = this.modalService.show(template);
     this.modalRef.setClass('modal-lg');

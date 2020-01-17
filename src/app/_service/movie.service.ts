@@ -54,7 +54,7 @@ export class MovieService {
     // date.setHours(0, 0, 0, 0);
     // next6days.setHours(0, 0, 0, 0);
     // next6days.setDate(next6days.getDate() + 6);
-    let url = Config.apiUrl + '/' + this.moviesUrl + '/' + movie.id + '/shows';
+    const url = Config.apiUrl + '/' + this.moviesUrl + '/' + movie.id + '/shows';
     console.log(url);
     return this.http.get<Showtime[]>(url);
     // .pipe(

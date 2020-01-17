@@ -28,22 +28,6 @@
         [movie]="movie"
         [filterDate]="filterDate"
       ></app-showtimes>
-
-      <a
-        href="javascript:void(0)"
-        class="movelist-more-showtime"
-        (click)="showAllShowtimes(movie.id)"
-        *ngIf="!showAllTimes[movie.id]"
-        >Show All Showtimes</a
-      >
-
-      <a
-        href="javascript:void(0)"
-        class="movelist-today-showtime"
-        (click)="hideAllShowtimes(movie.id)"
-        *ngIf="showAllTimes[movie.id]"
-        >Hide All Showtimes</a
-      >
     </div>
   </div>
 </div>
