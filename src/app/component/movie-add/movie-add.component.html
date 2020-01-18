@@ -1,62 +1,62 @@
-<form class="text-center border border-light p-5 justify-content-center" #MyForm="ngForm" (submit)="add(MyForm)">
+<form class="text-center p-5 justify-content-center" #MyForm="ngForm" (submit)="add(MyForm)">
   <p class="h2 mb-4">Add a showtime</p>
   <div class="form-group">
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">title</label>
       <div class="col-md-6">
-        <input ngModel name="title" placeholder="Movie Title" class="form-control mb-4" type="text">
+        <input ngModel name="title" placeholder="Movie Title" class="form-control mb-4" type="text" style="background: #222; color: white">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Poster</label>
       <div class="col-md-6">
-        <input ngModel name="poster" placeholder="Movie Poster" class="form-control mb-4" type="text">
+        <input ngModel name="poster" placeholder="Movie Poster" class="form-control mb-4" type="text" style="background: #222; color: white">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Backdrop</label>
       <div class="col-md-6">
-        <input ngModel name="backdrop" placeholder="Movie Backdrop" class="form-control mb-4" type="text">
+        <input ngModel name="backdrop" placeholder="Movie Backdrop" class="form-control mb-4" type="text" style="background: #222; color: white">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Trailer</label>
       <div class="col-md-6">
-        <input ngModel name="trailer" placeholder="Movie Trailer" class="form-control mb-4" type="text">
+        <input ngModel name="trailer" placeholder="Movie Trailer" class="form-control mb-4" type="text" style="background: #222; color: white">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Overview</label>
       <div class="col-md-6">
-        <textarea ngModel name="overview" placeholder="Movie Overview" class="form-control mb-4"></textarea>
+        <textarea ngModel name="overview" placeholder="Movie Overview" class="form-control mb-4" style="background: #222; color: white"></textarea>
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Director</label>
       <div class="col-md-6">
-        <input ngModel name="director" placeholder="Movie Director" class="form-control mb-4" type="text">
+        <input ngModel name="director" placeholder="Movie Director" class="form-control mb-4" type="text" style="background: #222; color: white">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Cast</label>
       <div class="col-md-6">
-        <input ngModel name="cast" placeholder="Movie Cast" class="form-control mb-4" type="text">
+        <input ngModel name="cast" placeholder="Movie Cast" class="form-control mb-4" type="text" style="background: #222; color: white">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Release Date</label>
       <div class="col-md-6">
-        <input ngModel name="release" placeholder="Movie Release Date" class="form-control mb-4" type="date">
+        <input ngModel name="release" placeholder="Movie Release Date" class="form-control mb-4" type="date" style="background: #222; color: white">
       </div>
     </div>
     <div class="form-group row">
       <label class="col-2 col-form-label offset-1">Runtime</label>
       <div class="col-md-6">
-        <input ngModel name="runtime" placeholder="Movie Runtime" class="form-control mb-4" type="number">
+        <input ngModel name="runtime" placeholder="Movie Runtime" class="form-control mb-4" type="number" style="background: #222; color: white">
       </div>
     </div>
   </div>
   <div class="col-md-4 offset-md-4">
-    <button [disabled]="!MyForm.valid" class="btn btn-info btn-block" type="submit">Submit</button>
+    <button [disabled]="!MyForm.valid" class="btn btn-block" style="background: #ff9722; color: white; font-size:large" type="submit">Submit</button>
   </div>
 </form>

@@ -1,11 +1,11 @@
 
-<form class="text-center border border-light p-5" #MyForm="ngForm" (submit)="save(MyForm)">
+<form class="text-center p-5" #MyForm="ngForm" (submit)="save(MyForm)">
   <p class="h2 mb-4">Add a showtime</p>
 
   <div class="form-group row">
     <label for="movieSelect" class="col-2 col-form-label offset-1">Movie Title</label>
     <div class="col-md-6">
-      <select class="browser-default custom-select mb-4" id="movieSelect" name="movieId" ngModel>
+      <select class="browser-default custom-select mb-4" id="movieSelect" name="movieId" style="background: #222; color: white" ngModel>
         <option *ngFor="let movie of movies" [value]="movie.id">{{movie.title}}</option>
       </select>
     </div>
@@ -14,21 +14,21 @@
   <div class="form-group row">
     <label for="example-date-input" class="col-2 col-form-label offset-1">Date</label>
     <div class="col-md-6">
-      <input ngModel type="date" name="date" id="example-date-input" class="form-control mb-4">
+      <input ngModel type="date" name="date" id="example-date-input"  style="background: #222; color: white" class="form-control mb-4">
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="example-time-input" class="col-2 col-form-label offset-1">Time</label>
+    <label for="example-time-input" class="col-2 col-form-label offset-1" >Time</label>
     <div class="col-md-6">
-      <input ngModel name="time" class="form-control mb-4" type="time" id="example-time-input">
+      <input ngModel name="time" class="form-control mb-4" type="time" style="background: #222; color: white"id="example-time-input">
     </div>
   </div>
 
   <p></p>
   <hr>
   <div class="col-md-4 offset-md-4">
-    <button [disabled]="!MyForm.valid" class="btn btn-info btn-block" type="submit">Submit</button>
+    <button [disabled]="!MyForm.valid" class="btn btn-info btn-block" type="submit" style="background: #ff9722; color: white; font-size:large">Submit</button>
   </div>
 </form>
 
