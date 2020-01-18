@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticationService.currentUser.subscribe(x => this.isLogged = (x !== null));
+    this.authenticationService.checkIfCurrentUserIsAdmin();
     this.authenticationService.isAdmin.subscribe(x => this.isAdmin = x);
 
   }
