@@ -21,6 +21,7 @@ import {MoviesGridComponent} from './component/movies-grid/movies-grid.component
 import {MoviesSliderComponent} from './component/movies-slider/movies-slider.component';
 import {CarouselModule} from 'ngx-bootstrap/carousel';
 import {AuthenticationComponent} from './component/authentication/authentication.component';
+import {PayStripeComponent} from './component/pay-stripe/pay-stripe.component'
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
 import {ErrorInterceptor} from './_helpers/error.interceptor';
 import {FormsModule} from '@angular/forms';
@@ -40,7 +41,8 @@ import {FormsModule} from '@angular/forms';
     MovieSearchComponent,
     MoviesGridComponent,
     MoviesSliderComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    PayStripeComponent
   ],
   imports: [
     BrowserModule,
