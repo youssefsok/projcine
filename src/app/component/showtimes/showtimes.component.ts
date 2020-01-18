@@ -5,6 +5,8 @@ import {ShowtimeDate} from 'src/app/interface/showtime-date';
 import {Showtime} from '../../interface/showtime';
 import {Router} from '@angular/router';
 import {BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
+import { Config } from 'src/Config';
+
 
 @Component({
   selector: 'app-showtimes',
@@ -15,11 +17,19 @@ export class ShowtimesComponent implements OnChanges {
   @Input() movie: Movie;
   @Input() filterDate: string;
   showtimes: Showtime[];
-  showtime: ShowtimeDate;
+  showtime: Showtime;
   modalRef: BsModalRef;
   ticketTime: String;
+  handler:any = null;
 
   constructor(private movieService: MovieService, private router: Router,  private modalService: BsModalService) {
+  }
+
+  ngOnInit() {
+  }
+ 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.getShowtimes();
   }
 
 
@@ -35,12 +45,32 @@ export class ShowtimesComponent implements OnChanges {
     this.modalRef = this.modalService.show(template);
     this.modalRef.setClass('modal-lg');
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.getShowtimes();
+
+
+
+  pay(amount) {
+    var stripe = (<any>window).Stripe("pk_test_5a1etS5nLFZIvKw0thzIKe8K00SR3neeGB")
+    
+    stripe.redirectToCheckout({
+      items: [
+        {sku: 'sku_GZTv5LSPPURsvR', quantity: 1},
+      ],
+      successUrl: 'http://localhost:4200/success',
+      cancelUrl: 'https://your-website.com/failure',
+  })
+  .then(function(result) {
+    console.log(result)
+  });
+
   }
-  cofirmPurchase() {
+
+  cofirmPurchase(token) {
+    console.log(token)
     this.modalRef.hide();
-    // TODO ADD PURCHASE
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(`userId : ${user.userId}`);
+
+    
   }
 
 
