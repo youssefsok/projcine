@@ -74,7 +74,7 @@ export class MovieService {
   }
 
   // get single movie
-  getMovie(id: number): Observable<Movie> {
+  getMovie(id: string): Observable<Movie> {
     const url = `${Config.apiUrl + '/' + this.moviesUrl}/${id}`;
     return this.http.get<Movie>(url);
   }
