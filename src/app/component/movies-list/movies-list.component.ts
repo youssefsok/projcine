@@ -4,6 +4,7 @@ import { Component, OnInit, Input, SimpleChanges, OnChanges, TemplateRef } from 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {log} from 'util';
+import {AuthenticationService} from '../../_service/authentication.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -16,10 +17,16 @@ export class MoviesListComponent implements OnInit {
   modalRef: BsModalRef;
   previewUrl = '';
 
-  constructor(private movieService: MovieService, private modalService: BsModalService, private sanitizer: DomSanitizer) { }
+  isAdmin: boolean = false;
+
+
+  constructor(private movieService: MovieService, private modalService: BsModalService, private sanitizer: DomSanitizer,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.getMovies();
+    this.authenticationService.checkIfCurrentUserIsAdmin();
+    this.authenticationService.isAdmin.subscribe(x => this.isAdmin = x);
   }
 
 

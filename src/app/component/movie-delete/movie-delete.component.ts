@@ -12,6 +12,7 @@ export class MovieDeleteComponent implements OnInit {
   constructor(private movieService: MovieService,private  route: Router) { }
 
   ngOnInit() {
+
   }
 
   deleteMovie() {
