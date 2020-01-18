@@ -36,14 +36,6 @@ export class MovieService {
     return this.http.get<Movie[]>(Config.apiUrl + '/' + this.moviesUrl);
   }
 
-  // Get now playing moving
-  getNowPlayingShows(filterDate: string): Observable<Showtime[]> {
-    let today = null;
-    today = new Date(filterDate);
-    const term = today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear();
-    console.log(term);
-    return this.http.get<Showtime[]>(`${Config.apiUrl + '/' + this.showtimesUrl}/?filter[where][date][like]=${term}`);
-  }
 
   // Get movie showtimes
   getMovieShowtimes(movie: Movie, filterDate: string): Observable<Showtime[]> {
@@ -107,7 +99,11 @@ export class MovieService {
     this.movieModel = new MovieModel();
 
     this.movieModel = new MovieModel( title, poster, trailer, backdrop, overview, director, this.newCasting, release_date, runtime);
-
+console.log("azeaze");
+console.log(this.movieModel);
     return (this.addMovie(this.movieModel));
+  }
+  deleteMovie(externalId: string) {
+    return this.http.delete(Config.apiUrl + '/' + this.moviesUrl + '/' + externalId);
   }
 }
