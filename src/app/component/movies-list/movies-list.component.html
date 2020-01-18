@@ -28,6 +28,7 @@
         [movie]="movie"
         [filterDate]="filterDate"
       ></app-showtimes>
+      <app-movie-delete *ngIf="isAdmin" [externalId]="movie.id" ></app-movie-delete>
     </div>
   </div>
 </div>

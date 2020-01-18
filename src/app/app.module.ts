@@ -25,6 +25,7 @@ import {ErrorInterceptor} from './_helpers/error.interceptor';
 import {FormsModule} from '@angular/forms';
 import {MovieAddComponent} from './component/movie-add/movie-add.component';
 import { ShowtimesAddComponent } from './component/showtimes-add/showtimes-add.component';
+import { MovieDeleteComponent } from './component/movie-delete/movie-delete.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ShowtimesAddComponent } from './component/showtimes-add/showtimes-add.c
     MoviesSliderComponent,
     AuthenticationComponent,
     MovieAddComponent,
-    ShowtimesAddComponent
+    ShowtimesAddComponent,
+    MovieDeleteComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'auth', component: AuthenticationComponent},
   {path: 'frontpage', component: FrontpageComponent},
   {path: 'movies', component: MoviesComponent},
-  {path: 'movie/add', canActivate: [AdminGuard], component: MovieAddComponent, pathMatch: 'full'},
+  {path: 'movie/add', component: MovieAddComponent, pathMatch: 'full'},
   {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'showtime/add', canActivate: [AdminGuard], component: ShowtimesAddComponent},
 
