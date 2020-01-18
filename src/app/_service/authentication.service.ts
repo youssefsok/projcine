@@ -16,8 +16,10 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {
     this.isAdmin = new BehaviorSubject(false);
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    const user: User = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUserSubject = new BehaviorSubject<User>(user);
     this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   public get currentUserValue(): User {
@@ -32,15 +34,16 @@ export class AuthenticationService {
         if (user) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
-          this.checkIfCurrentUserIsAdmin(user.userId);
+          this.checkIfCurrentUserIsAdmin();
           this.currentUserSubject.next(user);
         }
         return user;
       }));
   }
 
-  checkIfCurrentUserIsAdmin(id: string) {
-    this.http.get(`http://localhost:3000/api/RoleMappings?filter[where][principalId][like]=${id}`).subscribe((succ: any[]) => {
+  checkIfCurrentUserIsAdmin() {
+    const user: User = JSON.parse(localStorage.getItem('currentUser'));
+    this.http.get(`http://localhost:3000/api/RoleMappings?filter[where][principalId][like]=${user.userId}`).subscribe((succ: any[]) => {
       if (succ.length > 0) {
         this.isAdmin.next(true);
       }
