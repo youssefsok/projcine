@@ -1,26 +1,19 @@
-<form  #MyForm="ngForm" (submit)="save(MyForm)" >
-
-  <div class="form-group row">
-    <label for="example-date-input" class="col-2 col-form-label">Movie Title</label>
-    <select class="form-control col-10" name="movieId" ngModel>
-      <option *ngFor="let movie of movies" [value]="movie.id">{{movie.title}}</option>
-    </select>
-  </div>
-
-
-  <div class="form-group row">
-    <label for="example-date-input" class="col-2 col-form-label">Date</label>
-    <div class="col-10">
-      <input ngModel name="date" class="form-control" type="date" value="2011-08-19" id="example-date-input">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <label for="example-time-input" class="col-2 col-form-label">Time</label>
-    <div class="col-10">
-      <input ngModel name="time" class="form-control" type="time" value="13:45:00" id="example-time-input">
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-
+<!-- Default form contact -->
+<form class="text-center border border-light p-5" #MyForm="ngForm" (submit)="save(MyForm)" style="
+    padding-left: 150px!important;;padding-right: 150px!important;
+">
+  <p class="h4 mb-4">Add a showtime</p>
+  <label for="movieSelect">Movie Title</label>
+  <select class="browser-default custom-select mb-4" id="movieSelect" name="movieId" ngModel>
+    <option *ngFor="let movie of movies" [value]="movie.id">{{movie.title}}</option>
+  </select>
+  <label for="example-date-input" class="col-2 col-form-label">Date</label>
+  <input ngModel type="date" name="date" id="example-date-input" class="form-control mb-4">
+  <label for="example-time-input">Time</label>
+  <input ngModel name="time" class="form-control mb-4" type="time" id="example-time-input">
+  <!-- Send button -->
+  <p></p>
+  <hr>
+  <button class="btn btn-info btn-block" type="submit">Send</button>
 </form>
+<!-- Default form contact -->

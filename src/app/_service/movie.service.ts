@@ -37,7 +37,7 @@ export class MovieService {
   }
 
   // Get now playing moving
-  getNowPlayingShows(filterDate: string): Observable<Movie[]> {
+  getNowPlayingShows(filterDate: string): Observable<Showtime[]> {
     let today = null;
     today = new Date(filterDate);
     const term = today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear();
