@@ -17,7 +17,7 @@ export class ShowtimesComponent implements OnChanges {
   @Input() movie: Movie;
   @Input() filterDate: string;
   showtimes: Showtime[];
-  showtime: Showtime;
+  showtime: any;
   modalRef: BsModalRef;
   ticketTime: String;
   handler:any = null;
@@ -44,19 +44,21 @@ export class ShowtimesComponent implements OnChanges {
     this.ticketTime = showtime.time;
     this.modalRef = this.modalService.show(template);
     this.modalRef.setClass('modal-lg');
+    
   }
 
 
 
-  pay(amount) {
+  pay() {
     var stripe = (<any>window).Stripe("pk_test_5a1etS5nLFZIvKw0thzIKe8K00SR3neeGB")
+    const user = JSON.parse(localStorage.getItem('currentUser'));
     
     stripe.redirectToCheckout({
       items: [
-        {sku: 'sku_GZTv5LSPPURsvR', quantity: 1},
+        {sku: 'sku_GZY3hxxuEmCQ6N', quantity: 1},
       ],
-      successUrl: 'http://localhost:4200/success',
-      cancelUrl: 'https://your-website.com/failure',
+      successUrl: `${Config.host}/success/${user.userId}/${this.showtime.id}`,
+      cancelUrl: `${Config.host}`
   })
   .then(function(result) {
     console.log(result)

@@ -26,6 +26,7 @@ import {FormsModule} from '@angular/forms';
 import {MovieAddComponent} from './component/movie-add/movie-add.component';
 import { ShowtimesAddComponent } from './component/showtimes-add/showtimes-add.component';
 import { MovieDeleteComponent } from './component/movie-delete/movie-delete.component';
+import { PaymentConfirmedComponent } from './component/payment-confirmed/payment-confirmed.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MovieDeleteComponent } from './component/movie-delete/movie-delete.comp
     AuthenticationComponent,
     MovieAddComponent,
     ShowtimesAddComponent,
-    MovieDeleteComponent
+    MovieDeleteComponent,
+    PaymentConfirmedComponent
   ],
   imports: [
     BrowserModule,

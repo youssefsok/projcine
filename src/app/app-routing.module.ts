@@ -7,6 +7,7 @@ import {AuthenticationComponent} from './component/authentication/authentication
 import {MovieAddComponent} from './component/movie-add/movie-add.component';
 import {ShowtimesAddComponent} from './component/showtimes-add/showtimes-add.component';
 import {AdminGuard} from './_guards/admin.guard';
+import { PaymentConfirmedComponent } from './component/payment-confirmed/payment-confirmed.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/frontpage', pathMatch: 'full'},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'movie/add', component: MovieAddComponent, pathMatch: 'full'},
   {path: 'movie/:id', component: MovieDetailComponent},
   {path: 'showtime/add', canActivate: [AdminGuard], component: ShowtimesAddComponent},
+  {path :'success/:userId/:showId',component : PaymentConfirmedComponent}
 
 ];
 
