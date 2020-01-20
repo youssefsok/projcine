@@ -43,7 +43,7 @@ export class AuthenticationService {
 
   checkIfCurrentUserIsAdmin() {
     const user: User = JSON.parse(localStorage.getItem('currentUser'));
-    this.http.get(`http://localhost:3000/api/RoleMappings?filter[where][principalId][like]=${user.userId}`).subscribe((succ: any[]) => {
+    this.http.get(`http://localhost:3000/api/RoleMappings?filter[where][principalId]=${user.userId}`).subscribe((succ: any[]) => {
       if (succ.length > 0) {
         succ.forEach((roleMapping => {
           let roleId = roleMapping.roleId;
