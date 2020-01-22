@@ -98,7 +98,7 @@ export class MovieService {
     console.log(this.newCasting);
     this.movieModel = new MovieModel();
 
-    this.movieModel = new MovieModel( title, poster, trailer, backdrop, overview, director, this.newCasting, release_date, runtime);
+    this.movieModel = new MovieModel( title, poster, backdrop,trailer, overview, director, this.newCasting, release_date, runtime);
 console.log("azeaze");
 console.log(this.movieModel);
     return (this.addMovie(this.movieModel));

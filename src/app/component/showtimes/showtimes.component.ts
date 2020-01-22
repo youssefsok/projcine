@@ -6,6 +6,7 @@ import {Showtime} from '../../interface/showtime';
 import {Router} from '@angular/router';
 import {BsModalService, BsModalRef} from 'ngx-bootstrap/modal';
 import { Config } from 'src/Config';
+import { PaymentService } from 'src/app/_service/payment.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class ShowtimesComponent implements OnChanges {
   ticketTime: String;
   handler:any = null;
 
-  constructor(private movieService: MovieService, private router: Router,  private modalService: BsModalService) {
+  constructor(private movieService: MovieService, private router: Router,  private modalService: BsModalService , private paymentService : PaymentService) {
   }
 
   ngOnInit() {
@@ -49,32 +50,8 @@ export class ShowtimesComponent implements OnChanges {
 
 
 
-  pay() {
-    var stripe = (<any>window).Stripe("pk_test_5a1etS5nLFZIvKw0thzIKe8K00SR3neeGB")
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    
-    stripe.redirectToCheckout({
-      items: [
-        {sku: 'sku_GZY3hxxuEmCQ6N', quantity: 1},
-      ],
-      successUrl: `${Config.host}/success/${user.userId}/${this.showtime.id}`,
-      cancelUrl: `${Config.host}`
-  })
-  .then(function(result) {
-    console.log(result)
-  });
-
+  goToPayment() {
+    return this.paymentService.goToPayment(this.showtime.id);
   }
-
-  cofirmPurchase(token) {
-    console.log(token)
-    this.modalRef.hide();
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(`userId : ${user.userId}`);
-
-    
-  }
-
-
 
 }
